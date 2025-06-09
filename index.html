@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>X and O Game</title>
+    <style>
+        .container {
+            display: grid;
+            width: 90vmin;
+            height: 90vmin;
+            grid-template-columns: repeat(3, 1fr);
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .container>div {
+            height: 28.7vmin;
+            width: 28.7vmin;
+            cursor: pointer;
+            background-color: aliceblue;
+            border: 1px solid black;
+            color: black;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 8vmin;
+            font-weight: bold;
+            overflow: hidden;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div class="container">
+        <div id="1" onclick="ColourDiv(1)"></div>
+        <div id="2" onclick="ColourDiv(2)"></div>
+        <div id="3" onclick="ColourDiv(3)"></div>
+        <div id="4" onclick="ColourDiv(4)"></div>
+        <div id="5" onclick="ColourDiv(5)"></div>
+        <div id="6" onclick="ColourDiv(6)"></div>
+        <div id="7" onclick="ColourDiv(7)"></div>
+        <div id="8" onclick="ColourDiv(8)"></div>
+        <div id="9" onclick="ColourDiv(9)"></div>
+    </div>
+
+    <script>
+        let f = 0;
+        let gameover = false;
+        function ColourDiv(id) {
+            if (gameover == true) return;
+            const div = document.getElementById(id);
+            if (div.textContent !== "") return;
+
+            f++;
+            const symbol = (f % 2 === 0) ? "X" : "O";
+            div.textContent = symbol;
+
+            CheckWinner();
+        }
+
+        function CheckWinner() {
+            const wins = [
+                [1, 2, 3], [4, 5, 6], [7, 8, 9],
+                [1, 4, 7], [2, 5, 8], [3, 6, 9],
+                [1, 5, 9], [3, 5, 7]
+            ];
+
+            for (const symbol of ["X", "O"]) {
+                for (const [a, b, c] of wins) {
+                    if (
+                        document.getElementById(a).textContent === symbol &&
+                        document.getElementById(b).textContent === symbol &&
+                        document.getElementById(c).textContent === symbol
+                    ) {
+
+                        gameover = true;
+                        setTimeout(() => {
+                            alert(`${symbol} won the game`);
+                            location.reload();
+                        }, 1000);
+                        return;
+                    }
+                }
+            }
+
+            if (f === 9) {
+                gamever = true;
+                setTimeout(() => {
+                    alert("Match is drawn");
+                    location.reload();
+
+                }, 1000);
+            }
+        }
+    </script>
+</body>
+
+</html>
