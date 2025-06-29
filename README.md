@@ -22,3 +22,4 @@ CSS – for layout, styling, and responsiveness
 
 JavaScript – for game logic and user interaction
 
+🌐 Live Website: [Tick-tac-toe - GitHub Pages](https://samirshaikh05.github.io/Tick-tac-toe/)
